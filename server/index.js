@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   // print to console the socket.id to check the user loaded 
   console.log(`User Connected: ${socket.id}`);
 
-  // connects the user to a room and passes the username to update the list of online users
+  // event that passes the room to connect the user to that room, and username to update the list of online users
   socket.on("join_room", (username, room) => {
     socket.join(room);
     users.addUser(socket.id,username,room);
@@ -45,12 +45,12 @@ io.on("connection", (socket) => {
     console.log(`User with ID: ${socket.id} Name: ${username}joined room: ${room}`);
   });
 
-  // send message will emit the message data to the specified room
+  // event that will emit the message data to the specified room
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
   });
 
-  // when a user disconnects, it will remove them from the list we are keeping
+  // event when a user disconnects, it will remove them from the list we are keeping
   //  and it will update that list so the readouts are correct on screen
   socket.on("disconnect", () => {
     let user = users.removeUser(socket.id);
