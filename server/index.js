@@ -1,3 +1,10 @@
+/*
+Drew Bozarth
+dbozarth@chapman.edu
+Technical-Take-Home : Server : index.js
+The server side of the project that sets up the server and has 
+socket functions to listen to the client side and emit to the client side
+*/
 // setup express
 const express = require("express");
 const app = express();
